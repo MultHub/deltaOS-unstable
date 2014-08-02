@@ -2,7 +2,7 @@
 	converts a hex digit into a color value
 	** this function was taken from NPaintPro by NitrogenFingers
 ]]--
-local getColourOf = function(hex)
+local function getColourOf(hex)
 	local value = tonumber(hex, 16)
 	if not value then return nil end
 	value = math.pow(2,value)
@@ -18,7 +18,7 @@ end
 	** this function was taken from Sketch by oeed
 	** (which was based on a function from NPaintPro by NitrogenFingers)
 ]]--
-local parseNFT = function(lines)
+local function parseNFT(lines)
 	local pixels = {}
 	for y, line in ipairs(lines) do
 		local bgNext, fgNext = false, false
@@ -58,7 +58,7 @@ end
 --[[
 	loads an NFT file from a path and parses it
 ]]--
-loadNFT = function(path)
+function loadNFT(path)
 	local h = fs.open(path,"r")
 	local lines = {}
 	local line = ""
@@ -75,7 +75,7 @@ end
 	very glitchy implementation of an NFT draw function
 	** will mess up an image with transparent pixels
 ]]--
-drawNFT = function(x,y,pixels)
+function drawNFT(x,y,pixels)
 	for ypos=1,#pixels do
 		for xpos=1,#pixels[ypos] do
 			local p = pixels[ypos][xpos]
