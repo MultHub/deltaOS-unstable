@@ -29,3 +29,19 @@ function bsod(err)
      end
   end
 end
+
+--EpiErrHandle
+--(Replacement for Catnip, uses pcall and returns
+--either a error if it errored or true if the code
+--ran successfully)
+function errhnd(func)
+  ok,err = pcall(func)
+  if ok then return true
+  else return err end
+end
+function errbsod(func)
+  e=errhnd(func)
+  if type(e) == "string" then bsod(e)
+  elseif type(e) == "boolean" then return true
+  else return "I have no idea what happened." end
+end  
