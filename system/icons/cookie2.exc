@@ -4,26 +4,27 @@
     -- Please Do not Steal or claim it as your own
      
     -- company screens
-ompple = paintutils.loadImage('ACUGE/cc/logo2')
-starstang = paintutils.loadImage('ACUGE/cc/logo1')
+ompple = paintutils.loadImage('/system/extras/cookieclicker/logo2')
+starstang = paintutils.loadImage('/system/extras/cookieclicker/logo1')
+
 function Fin()
-term.setBackgroundColor(colors.gray)
-term.clear()
-term.setCursorPos(1,1)
-sleep(.1)
-term.setBackgroundColor(colors.white)
-term.clear()
-term.setCursorPos(1,1)
-end
+	term.setBackgroundColor(colors.gray)
+	term.clear()
+	term.setCursorPos(1,1)
+	sleep(.1)
+	term.setBackgroundColor(colors.white)
+	term.clear()
+	term.setCursorPos(1,1)
+	end
 function Fout()
- term.setBackgroundColor(colors.gray)
- term.clear()
- term.setCursorPos(1,1)
- sleep(.1)
- term.setBackgroundColor(colors.black)
- term.clear()
- term.setCursorPos(1,1)
- sleep(.1)
+	term.setBackgroundColor(colors.gray)
+	term.clear()
+	term.setCursorPos(1,1)
+	sleep(.1)
+	term.setBackgroundColor(colors.black)
+	term.clear()
+	term.setCursorPos(1,1)
+	sleep(.1)
 end
 
 Fin()
@@ -621,6 +622,7 @@ Fout()
     function ac()
       cookies = cookies + cps
     end
+    
     clickcookie()
     game()
 
