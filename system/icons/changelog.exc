@@ -23,6 +23,7 @@ if term.isColor() then
 	tcol2 = colors.black
 	hax = colors.red
 	incin = colors.red
+	aepic = colors.yellow
 else
 	col1 = colors.white
 	col2 = colors.black
@@ -40,6 +41,10 @@ while follow() do
 	elseif usr == 'FlareHAX0R' then
 		if hax then
 			term.setTextColor(hax)
+		end
+	elseif usr == "aepic999" then
+		if aepic then
+			term.setTextColor(aepic)
 		end
 	end
 	write(usr)
