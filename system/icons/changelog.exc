@@ -2,7 +2,7 @@ local input = git.getCommits('FlareHAX0R','deltaOS-unstable')
 local xLen,yLen = term.getSize()
 term.clear()
 term.setCursorPos(1,1)
-ui.cprint('DeltaOS Changelog (GitHub Commits)')
+graphics.cPrint('DeltaOS Changelog (GitHub Commits)')
 local col1,col2,tcol1,tcol2
 local mode = 1
 
