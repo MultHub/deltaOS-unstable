@@ -1,7 +1,7 @@
 print("Are you sure you want to uninstall DeltaOS? (y/n)")
 local choice = string.lower(read())
 rem={"/startup","/system","/users",
-"/home","/lib","/apis"}
+"/home","/lib","/apis", "/version", "/uninstall"}
 if choice == "y" or choice == "yes" then
  print("Uninstalling deltaOS...")
  for k,v in pairs(rem) do
