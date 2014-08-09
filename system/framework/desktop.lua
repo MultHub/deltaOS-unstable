@@ -515,7 +515,14 @@ while true do
        end
        graphics.reset(colors.black,colors.white)
        os.pullEvent = oldPullEvent
-       shell.run(apps[k]["exec"])
+       
+       if settings.getSetting("desktop", 5) == true then
+        local tid = shell.openTab(apps[k]["exec"]
+        mutlishell.setTitle(tid, apps[k]["name"])
+        multishell.setFocus(tid)
+       else
+        shell.run(apps[k]["exec"])
+       end
        oldPullEvent = os.pullEvent
        os.pullEvent = os.pullEventRaw
        if grid then drawGrid() end
