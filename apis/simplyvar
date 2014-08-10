@@ -1,0 +1,25 @@
+--SimplyVar variable notation
+--By aepic101
+--(Another developer API for DeltaOS xD)
+
+--Format:
+--varname:varvalue
+
+function runRawSV(sv)
+  --Finding that :'s place
+  a,b = sv:find(":")
+  --Basing the positions of the name and value off a
+  --(why would I use b, it would be pretty much the same)
+  vnps1,vnps2 = 1,a-1
+  vvps1,vvps2 = a+1,#sv
+  --Now, I'll get the names based on the positions
+  vn,vv = sv:sub(vnps1,vnps2),sv:sub(vvps1,vvps2)
+  --Getting the string ready
+  cd = vn .. " = " .. vv
+  --Using loadstring() to make (cd) into a function,
+  --and then returns that function..
+  a = loadstring(cd)
+  return a
+end  
+  
+  
