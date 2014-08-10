@@ -36,7 +36,7 @@ while follow() do
 	local usr = input[i]['commit']['author']['name']
 	if usr == 'incinirate' then
 		if incin then
-			term.setTextColor(timia2109)
+			term.setTextColor(incin)
 		end
 	elseif usr == 'FlareHAX0R' then
 		if hax then
