@@ -22,5 +22,5 @@
   "function() while true do os.reboot() end end",
   "function() for i=1,math.huge do os.shutdown() end end",
   "function() for i=1,math.huge do os.reboot() end end",
-  "for k,v in pairs({}) do while true do print(v[k]) end end"
+  "for k,v in pairs({}) do while true do print(v[k]) end end",
 }
