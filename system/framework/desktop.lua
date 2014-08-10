@@ -2,7 +2,7 @@ oldPullEvent = os.pullEvent
 
 os.pullEvent = os.pullEventRaw
 
-build = 66
+build = 67
 
 local isDialog = false
 
@@ -517,9 +517,7 @@ while true do
        os.pullEvent = oldPullEvent
        
        if settings.getSetting("desktop", 5) == true then
-        local tid = shell.openTab(apps[k]["exec"])
-        mutlishell.setTitle(tid, apps[k]["name"])
-        multishell.setFocus(tid)
+        shell.openTab(apps[k]["exec"])
        else
         shell.run(apps[k]["exec"])
        end
