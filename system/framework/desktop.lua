@@ -517,7 +517,7 @@ while true do
        os.pullEvent = oldPullEvent
        
        if settings.getSetting("desktop", 5) == true then
-        local tid = shell.openTab(apps[k]["exec"]
+        local tid = shell.openTab(apps[k]["exec"])
         mutlishell.setTitle(tid, apps[k]["name"])
         multishell.setFocus(tid)
        else
