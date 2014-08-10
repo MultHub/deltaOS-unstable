@@ -76,6 +76,14 @@ local tab = {
     icon = "system/icons/sketch.img",
     isNFT = false,
   },
+  {
+  	y = 3,
+  	x = 10,
+  	name = "LIDE",
+  	exec = "system/icons/luaide.exc",
+  	icon = "system/icons/luaide.nft",
+  	isNFT = true,
+  },
 }
 	hand.write(textutils.serialize(tab))
 	hand.close()
