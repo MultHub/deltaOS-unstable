@@ -67,15 +67,13 @@ term.setCursorPos(1, kernel.y/2-2)
 
 graphics.cPrint("DeltaOS")
 
-if fs.exists("system/.appdata")
+if fs.exists("system/.appdata") then
  local apd = fs.open("system/.appdata", "r")
  local appdata = textutils.unserialize(apd.readAll())
  apd.close()
  
  for i=1, #appdata do
-  if not fs.exists(appdata[i]["exec"]) then
-   table.remove(i)
-  elseif not fs.exists(appdata[i]["icon"] then
+  if not fs.exists(appdata[i]["exec"]) or not fs.exists(appdata[i]["icon"]) then
    table.remove(i)
   end
  end
