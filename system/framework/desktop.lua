@@ -413,7 +413,8 @@ if settings.getSetting("desktop", 1) == "color" then
 	isI = true
 	graphics.reset( settings.getSetting("desktop", 2 ), colors.black )
 elseif settings.getSetting("desktop", 1) == "image" then
-	graphics.drawImage(settings.getSetting("desktop", 2), 1, 2)
+	local imgPath = tostring( settings.getSetting("desktop", 2) )
+	graphics.drawImage(imgPath, 1, 2)
 end
 graphics.drawLine( kernel.y, settings.getSetting("desktop", 3) )
 	
