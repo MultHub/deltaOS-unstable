@@ -2,7 +2,7 @@ oldPullEvent = os.pullEvent
 
 os.pullEvent = os.pullEventRaw
 
-build = 67.3
+build = 67.4
 
 local isDialog = false
 
@@ -404,8 +404,7 @@ elseif settings.getSetting("desktop", 1) == "image" then
 	graphics.drawImage(settings.getSetting("desktop", 2), 1, 2)
 end
 graphics.drawLine( kernel.y, settings.getSetting("desktop", 3) )
-
-term.setCursorPos(kernel.x-cUser	
+	
 
 term.current().setCursorPos(kernel.x-(kernel.x-1), 1)
 if ua==nil then ua=true end
