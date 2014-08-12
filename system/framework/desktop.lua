@@ -2,7 +2,7 @@ oldPullEvent = os.pullEvent
 
 os.pullEvent = os.pullEventRaw
 
-build = 67.5
+build = 67.6
 
 local isDialog = false
 
@@ -296,6 +296,7 @@ while true do
 			term.setCursorPos(1, 1)
 			term.setTextColor(colors.red)
 			graphics.cPrint("Invalid username and/or password")
+			term.setTextColor(colors.black)
 		end
 			
 	elseif (shutdown:isClicked(x,y)) then
@@ -524,14 +525,15 @@ while true do
     else
      if asel==k then
       if os.clock()-lclk<=dbclk then
-       if settings.getSetting("desktop", 4) == true then
+       if settings.getSetting("desktop", 4) == true and settings.getSetting("desktop", 5) == false then
         animations.closeIn()
        end
        graphics.reset(colors.black,colors.white)
        os.pullEvent = oldPullEvent
        
        if settings.getSetting("desktop", 5) == true then
-        shell.openTab(apps[k]["exec"])
+        local tID = shell.openTab(apps[k]["exec"])
+        shell.switchTab(tID)
        else
         shell.run(apps[k]["exec"])
        end
