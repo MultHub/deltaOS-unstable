@@ -11,7 +11,6 @@ Direct link: http://pastebin.com/raw.php?i=4nRg9CHU
 local args = {...}
  
 
---Remove the line above this and change the lines below to use automated mode.
 local automated = true                                                  -- Don't touch!
 local hide_progress = true                                              -- If true, will not list out files as they are downloaded
 args[1] = "FlareHAX0R"                                                 -- Github username
@@ -20,7 +19,6 @@ args[3] = nil                                                                   
 args[4] = nil                                                                   -- Path - defaults to root ("/")
 --local pre_dl = "graphics.cPrint('Starting download...')"  -- Command(s) to run before download starts.
 local post_dl = "fs.delete(\"system/.setup_trigger\");os.reboot()"   -- Command(s) to run after download completes.
---Remove the line below this and change the lines below to use automated mode.
 
 args[3] = args[3] or "master"
 args[4] = args[4] or ""
