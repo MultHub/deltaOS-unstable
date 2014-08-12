@@ -9,8 +9,6 @@ local isDialog = false
 local width = kernel.x
 local height = kernel.y
 
-if not fs.exists("system/.appdata") then
-	local hand = fs.open("system/.appdata","w")
 local tab = {
   {
     y = 2,
@@ -85,6 +83,8 @@ local tab = {
   	isNFT = true,
   },
 }
+if not fs.exists("system/.appdata") then
+	local hand = fs.open("system/.appdata","w")
 	hand.write(textutils.serialize(tab))
 	hand.close()
 end
