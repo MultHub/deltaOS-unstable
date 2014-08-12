@@ -2,7 +2,7 @@ oldPullEvent = os.pullEvent
 
 os.pullEvent = os.pullEventRaw
 
-build = 67.1
+build = 67.2
 
 local isDialog = false
 
@@ -309,11 +309,11 @@ loginScr()
 
 local latest = http.get("https://raw.githubusercontent.com/FlareHAX0R/deltaOS-unstable/master/version")
 if tonumber(latest.readAll()) > build then
-	graphics.drawImage("/system/media/delta.nfp", 1, 1)
-	term.current().setBackgroundColor(colors.white)
-	term.current().setCursorPos(1, 1)
-	graphics.cPrint("Updating...")
+	graphics.reset(colors.white, colors.black)
+	print(" ")
+	graphics.cPrint( "Updating DeltaOS to build"..tostring( latest.readAll() ) b)
 	shell.run("/system/update")
+	latest.close()
 end
 
 if settings.getSetting("desktop", 4) == true then
