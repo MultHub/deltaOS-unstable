@@ -311,9 +311,9 @@ local latest = http.get("https://raw.githubusercontent.com/FlareHAX0R/deltaOS-un
 if tonumber(latest.readAll()) > build then
 	graphics.reset(colors.white, colors.black)
 	print(" ")
-	graphics.cPrint( "Updating DeltaOS to build"..tostring( latest.readAll() ) b)
+	newVer = latest.readAll()
+	graphics.cPrint( "Updating DeltaOS to build "..newVer.."!" )
 	shell.run("/system/update")
-	latest.close()
 end
 
 if settings.getSetting("desktop", 4) == true then
