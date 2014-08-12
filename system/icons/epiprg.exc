@@ -31,10 +31,11 @@ function calculate()
   while true do
     print("Equation: -Slash is divide, asterisk for multiply, exit to exit-")
     local hi = read()
+    loadstring("tmp=" .. hi)()
     if hi == "exit" then
       reload()
     else
-      print("Answer: " .. tonumber(hi))
+      print("Answer: " .. tmp)
     end
   end
 end
