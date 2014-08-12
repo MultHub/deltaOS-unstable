@@ -220,7 +220,7 @@ local function drawBackground()
 		term.clear()
 	elseif (bgImage) then
 		term.clear()
-		graphics.drawImage(bgImage)
+		graphics.drawImage(bgImage, 1, 1)
 	else
 		term.setBackgroundColor(colors.white)
 		term.clear()
@@ -392,6 +392,8 @@ local function drawGrid()
 end
 
 local function draw(ua)
+	
+local cUser = users.getUserName()
 
 local isI = false
 
@@ -401,7 +403,9 @@ if settings.getSetting("desktop", 1) == "color" then
 elseif settings.getSetting("desktop", 1) == "image" then
 	graphics.drawImage(settings.getSetting("desktop", 2), 1, 2)
 end
-	
+graphics.drawLine( kernel.y, settings.getSetting("desktop", 3) )
+
+term.setCursorPos(kernel.x-cUser	
 
 term.current().setCursorPos(kernel.x-(kernel.x-1), 1)
 if ua==nil then ua=true end
@@ -412,10 +416,13 @@ drawApps()
 
 if isUnstable then
  term.current().setBackgroundColor( settings.getSetting("desktop", 3) )
- term.current().setCursorPos(kernel.x-string.len(fullBuildName)+1, 1)
+ term.current().setCursorPos(kernel.x-string.len(fullBuildName)+1, kernel.y)
  write(fullBuildName)
  term.current().setCursorPos(1, 1)
 end
+
+term.setCursorPos(kernel.x-cUser:len()+1, 1)
+write(cUser)
 
 end
 
@@ -584,35 +591,11 @@ end
 
 
 
-local function rServ()
-	while true do
-		local event = os.pullEvent()
-		if event == "term_resize" or event == "monitor_resize" then
-			draw()
-		end
-	end
-end
-
 
 local function firewall()
  shell.run("/system/digitalarmor/firewall")
 end
 
-local function pingServ()
-	if not rdnt or settings.getSetting("services", 1) == false then
-		return
-	elseif rdnt == true and settings.getSetting("services", 1) == true then
-		while true do
-			local i, m = rednet.receive("DOS")
-			if m == "$PING" then
-				rednet.send(i, "$TRUE", "DOS")
-				sleep(0.5)
-				rednet.send(i, "$TRUE", "DOS")
-			end
-			sleep(0)
-		end
-	end
-end
 
 
 parallel.waitForAll(sleepServ, shellServ, firewall)
