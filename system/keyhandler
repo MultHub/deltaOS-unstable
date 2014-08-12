@@ -1,0 +1,27 @@
+--The Key Handler
+--In any program you want to support key handling, do:
+--1: Put your main code in a function.
+--For example: 
+--print("Hello")
+--turns into:
+--function main()
+--  print("Hello")
+--end
+--2: Put this on the bottom of your program:
+--if not DeltaOS then main()
+--else parallel.waitForAll(main, function() os.run("/system/keyhandler") end) end
+--Key handling will be supported by default on all DeltaOS programs made by
+--HAX0R or another person in the DeltaOS dev group, and in desktop.lua (but I'll actually
+--put it in desktop.lua's code instead of..)
+while true do
+  _,key=os.pullEvent("key")
+  if key == keys.ctrl then
+    _2,key2=os.pullEvent("key")
+    if key == keys.s then
+      term.clear()
+      print("DeltaOS shell. Type exit to go back to DeltaOS.")
+      shell.run("shell")
+    end
+  end
+end  
+    
