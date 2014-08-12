@@ -122,6 +122,17 @@ local function getIcons()
  apps = {}
  local m = fs.open(appsfle,"r")
  apps = textutils.unserialize(m.readAll())
+ for i=1,#tabs do
+  local fnd = false
+  for j=1,#apps do
+   if apps[j].exec==tab[i].exec then
+    fnd = true	
+   end
+  end
+  if not fnd then
+   table.insert(apps,tab[i])	
+  end
+ end
  m.close()
 end
 getIcons()
