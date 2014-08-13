@@ -9,7 +9,7 @@ local isDialog = false
 local width = kernel.x
 local height = kernel.y
 
-local tabs = {
+local tab = {
   {
     y = 2,
     x = 1,
@@ -122,7 +122,7 @@ local function getIcons()
  apps = {}
  local m = fs.open(appsfle,"r")
  apps = textutils.unserialize(m.readAll())
- for i=1,#tabs do
+ for i=1,#tab do
   local fnd = false
   for j=1,#apps do
    if apps[j].exec==tab[i].exec then
