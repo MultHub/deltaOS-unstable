@@ -9,7 +9,7 @@ local isDialog = false
 local width = kernel.x
 local height = kernel.y
 
-local tab = {
+local tabs = {
   {
     y = 2,
     x = 1,
