@@ -102,5 +102,19 @@ end
 sleep(1.5)
 
 
+local function runDesktop()
+ shell.run("/system/framework/desktop.lua")
+end
 
-shell.run("/system/framework/desktop.lua")
+local function monServ()
+ while true do
+  local event,side,x,y = os.pullEvent("monitor_touch")
+  if x ~= nil and y ~= nil then
+   if type(x) == "number" and type(y) == "number" then
+    os.queueEvent("mouse_click", 1, x, y)
+   end
+  end
+ end
+end
+
+parallel.waitForAll(runDesktop, monServ)
