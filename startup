@@ -64,6 +64,16 @@ graphics.reset(colors.white, colors.black)
 term.setBackgroundColor(colors.white)
 term.setCursorPos(1, kernel.y/2-2)
 
+if settings.getSetting("monitor", 1) == true then
+ if peripheral.getType(settings.getSetting("monitor", 2)) ~= "monitor" then
+    print("A monitor side has been specified, but it is an invalid redirect target!")
+ else
+    print("Wrapping to monitor!")
+    local monitorWrap = peripheral.wrap(settings.getSetting("monitor", 2))
+    term.redirect(monitorWrap)
+ end
+end
+
 
 graphics.cPrint("DeltaOS")
 
