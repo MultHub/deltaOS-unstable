@@ -2,7 +2,7 @@ oldPullEvent = os.pullEvent
 
 os.pullEvent = os.pullEventRaw
 
-build = 67.6
+build = 67.7
 
 local isDialog = false
 
