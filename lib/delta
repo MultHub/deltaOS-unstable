@@ -1,0 +1,8 @@
+if graphics then
+ cPrint = graphics.cPrint
+ term.reset = graphics.reset
+end
+
+--Similar to the "pocket" table on pocket computers
+deltaOS = {}
+
