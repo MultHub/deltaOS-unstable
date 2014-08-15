@@ -179,6 +179,8 @@ local function maxRead(w,c,str)
 	term.setCursorPos(x,y)
 	term.write(string.sub(ds,(#s-w >= 1) and #s-w or 1,#s))
 	
+	local toNext
+	
 	while true do --main loop
 		local e,p,cx,cy = os.pullEvent() --pull event
 		
@@ -186,6 +188,7 @@ local function maxRead(w,c,str)
 			s = s..p --append typed character to string
 		elseif e == "key" then --key was pressed
 			if p == keys.enter then --return/enter
+				toNext = true
 				break --break the loop
 			elseif p == keys.backspace then --backspace
 				s = string.sub(s,1,#s-1) --remove last character from string
@@ -208,7 +211,7 @@ local function maxRead(w,c,str)
 	end
 	
 	term.setCursorBlink(false)
-	return s --return the string
+	return s,toNext --return the string
 end
 
 local bgSetting = nil --settings.getSetting("desktop",2)
@@ -291,7 +294,12 @@ while true do
 		if (y == 4) then
 			term.setBackgroundColor(colors.lightGray)
 			term.setCursorPos(2,4)
-			username = maxRead(w-2,nil,username)
+			local toNext
+			username,toNext = maxRead(w-2,nil,username)
+			
+			if (toNext) then
+				os.queueEvent("mouse_click",1,2,7)
+			end
 		elseif (y == 7) then
 			term.setBackgroundColor(colors.lightGray)
 			term.setCursorPos(2,7)
