@@ -69,17 +69,28 @@ function roundNumber(n)
     end
     return tonumber(o)
   end
+end
+function selectItemByContents(otable,content)
+  for k,v in pairs(otable) do
+    if v==content then
+      return v
+    end
+  end
+end
+function selectRandomItem(otable)
+  n=math.random(1,#otable)
+  return otable[n]
 end  
-    
-      
-      
-      
-      
-      
-      
-    
-      
-      
-    
-    
-  
+function pause(cmsg)
+  cmst="bl"
+  if cmsg ~= nil then cmst = true else cmst = false end
+  if cmst then
+    print(cmsg)
+    a=os.pullEvent("key")
+    return nil
+  else
+    print("Press any key to continue..")
+    a=os.pullEvent("key")
+    return nil
+  end
+end
