@@ -82,12 +82,6 @@ if fs.exists("system/.appdata") then
  local appdata = textutils.unserialize(apd.readAll())
  apd.close()
  
- for i=1, #appdata do
-  if not fs.exists(appdata[i]["exec"]) or not fs.exists(appdata[i]["icon"]) then
-   table.remove(i)
-  end
- end
- end
 
 
 
