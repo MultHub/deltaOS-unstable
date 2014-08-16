@@ -77,10 +77,7 @@ end
 
 graphics.cPrint("DeltaOS")
 
-if fs.exists("system/.appdata") then
- local apd = fs.open("system/.appdata", "r")
- local appdata = textutils.unserialize(apd.readAll())
- apd.close()
+
  
 
 
