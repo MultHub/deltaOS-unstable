@@ -1,7 +1,9 @@
-deltaOS
+DeltaOS
 =======
 
 DeltaOS files
+
+WARNING - UNSTABLE, BUT CONTAINS LATEST FEATURES
 
 Download
 =======
