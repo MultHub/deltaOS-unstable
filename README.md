@@ -7,6 +7,9 @@ WARNING - UNSTABLE, BUT CONTAINS LATEST FEATURES.
 
 USE IF YOU DARE
 
+
+Join the IRC at https://webchat.esper.net/?channels=deltaos
+
 Download
 =======
 http://pastebin.com/9FiUs9pZ
