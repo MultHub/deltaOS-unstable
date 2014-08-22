@@ -1,0 +1,9 @@
+--DeltaWindow API by HAX0R
+--Has centerwindow. maybe add more in future?
+
+
+function cWindow(width, height)
+	os.loadAPI("/apis/kernel")
+	local x = window.create( term.current(), kernel.x/2-width/2, kernel.y/2-height/2, width, height )
+	return x
+end
