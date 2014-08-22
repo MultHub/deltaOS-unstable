@@ -1,3 +1,44 @@
+
+
+  function red_reset(red, bg, fg)
+    if bg then
+      red.setBackgroundColor(bg)
+    end
+
+    if fg then
+      red.setTextColor(bg)
+    end
+
+    red.clear()
+    red.setCursorPos(1, 1)
+
+  end
+
+  function red_cWrite(red, text, y)
+    text = tostring(text)
+    local cx, cy = red.getCursorPos()
+    local w, h = red.getSize()
+    y = y or cy
+    red.setCursorPos(w/2-text:len()/2, y)
+    red.write(text)
+  end
+
+  function red_cPrint(red, text, y)
+    local cx, cy = red.getCursorPos()
+    red_cWrite(red, text, y)
+    red.setCursorPos(1, cy+1)
+  end
+
+  function red_drawLine(red, y, color)
+    local w, h = red.getSize()
+    red.setCursorPos(1, y)
+    red.setBackgroundColor(color)
+    red.write(string.rep(" ", w))
+  end
+
+
+
+
 cWrite = function(text)
         local x = term.current().getSize()
         local _,y = term.current().getCursorPos()
@@ -36,6 +77,9 @@ cPrint = function(text)
 end
 
 function drawImage(image, x, y)
+ if type(image) ~= "string" then
+  error("Expected string, got "..tostring(type(image)).." instead.")
+ end
  local img = paintutils.loadImage(image)
  paintutils.drawImage(img, x, y)
 end
@@ -81,6 +125,9 @@ function ynbox(x, y, isYes)
 end
 
 function drawNFT(image, x, y)
+ if type(image) ~= "string" then
+  error("Expected string, got "..tostring(type(image)).." instead.")
+ end
  local nftFile = nft.loadNFT(image)
  nft.drawNFT(x, y, nftFile)
 end
