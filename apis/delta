@@ -1,47 +1,58 @@
 --APIs for generally interacting with DeltaOS
 
 function bsod(err)
-  graphics.reset(colors.blue)
-  print("")
-  term.setTextColor(colors.black)
-  term.setBackgroundColor(colors.white)
-  graphics.cPrint("DeltaOS")
-  term.setBackgroundColor(colors.blue)
-  term.setTextColor(colors.white)
-  print("")
-  graphics.cPrint("An error has occured.")
-  graphics.cPrint("The error is: "..err)
-  print("")
-  graphics.cPrint("Please report this error to ")
-  graphics.cPrint("the deltaOS repo.")
-  print("")
-  graphics.cPrint("DeltaOS Unstable repo: ")
-  graphics.cPrint("https://github.com/FlareHAX0R/deltaOS-unstable")
-  print("")
-  graphics.cPrint("DeltaOS Stable repo: ")
-  graphics.cPrint("https://github.com/FlareHAX0R/deltaOS")
-  print("")
-  graphics.cPrint("Press any key to continue.")
+  err = err or tostring(err)
+  os.loadAPI("/apis/kernel")
+  os.loadAPI("/apis/sha256")
+  os.loadAPI("/apis/graphics")
+  local fullCode = sha256.hash(err)
+  local errCode = fullCode:sub(1, 3)
+  graphics.reset(colors.white, colors.black)
+  print()
+  graphics.cPrint("We encountered a problem")
+  graphics.cPrint("but couldn't recover.")
+  print()
+  print()
+  graphics.cPrint("The error was:")
+  graphics.cPrint(err)
+  print()
+  print()
+  graphics.cPrint("Please report this problem to a dev!")
+
+  print()
+  print()
+  graphics.cPrint("Press S to go to shell, press any other key to")
+  graphics.cPrint("reboot.")
+  term.setCursorPos(kernel.x-3, kernel.y)
+  write(errCode)
   while true do
-     local event = os.pullEvent()
-     if event == "key" or "mouse_click" or "monitor_touch" then
-       os.reboot()
-     end
+  	local event, char = os.pullEvent("key")
+  	if char then
+  		if char == 31 then
+  			graphics.reset(colors.black, colors.white)
+  			shell.run("/rom/programs/shell")
+  			os.reboot()
+  		else
+  			os.reboot()
+  		end
+  	end
   end
+
 end
 
---EpiErrHandle
---(Replacement for Catnip, uses pcall and returns
---either a error if it errored or true if the code
---ran successfully)
+--[[
+Catnip is still valid.
+
 function errhnd(func)
   ok,err = pcall(func)
   if ok then return true
   else return err end
 end
+
 function errbsod(func)
   e=errhnd(func)
   if type(e) == "string" then bsod(e)
   elseif type(e) == "boolean" then return true
   else return "I have no idea what happened." end
 end  
+]]--
