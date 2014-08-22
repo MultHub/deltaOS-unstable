@@ -4,7 +4,7 @@ os.pullEvent = os.pullEventRaw
 
 --local function init()
 
-build = 68.2
+build = 68.3
 
 local isDialog = false
 
@@ -280,10 +280,10 @@ end
 login:draw()
 shutdown:draw()
 
-local function checkForOld(usern, actualPass, hPassword)
+local function checkForOld(usern, actualPass)
   usern = tostring(usern)
   actualPass = tostring(actualPass)
-  hPassword = tostring(hPassword)
+  hPassword = tostring(users.getPassword(usern))
   if hPassword == sha256.sHash(actualPass, usern) then
     return true
   elseif actualPass == hPassword then
@@ -321,8 +321,8 @@ while true do
 		end
 	end
 	if (login:isClicked(x,y)) then
-		if users.isUser(username) == true and users.getPassword(username) == sha256.sHash(password, password) then
-      if checkForOld(username) == true then
+		if (users.isUser(username) == true and users.getPassword(username) == sha256.sHash(password, password)) or (users.isUser(userName) == true and checkForOld(username, password)) then
+      if checkForOld(username, password) == true then
         users.changePass(username, sha256.sHash(password, password))
       end
 			users.login(username)
