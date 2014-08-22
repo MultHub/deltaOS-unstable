@@ -3,7 +3,7 @@
 
 
 function cWindow(width, height)
-	os.loadAPI("/apis/kernel")
-	local x = window.create( term.current(), kernel.x/2-width/2, kernel.y/2-height/2, width, height )
+	w,h=term.getSize()
+	local x = window.create( term.current(), w/2-width/2, h/2-height/2, width, height )
 	return x
 end
