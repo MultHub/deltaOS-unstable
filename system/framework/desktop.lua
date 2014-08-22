@@ -1,10 +1,10 @@
 oldPullEvent = os.pullEvent
 
-local os.pullEvent = os.pullEventRaw
+os.pullEvent = os.pullEventRaw
 
 --local function init()
 
-build = 68
+build = 68.1
 
 local isDialog = false
 
