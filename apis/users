@@ -1,6 +1,6 @@
 function getUserName()
-if not fs.exists("users/.cu") then return false end
-local file = fs.open("/users/.cu","r")
+if not fs.exists("/tmp/.cu") then return false end
+local file = fs.open("/tmp/.cu","r")
 local cu = file.readLine()
 file.close()
 return cu
@@ -9,7 +9,7 @@ end
 getCurrentUser = getUserName
 
 function login(name)
-  local file = fs.open("/users/.cu","w")
+  local file = fs.open("/tmp/.cu","w")
 file.write(name)
 file.close()
 return true
@@ -17,7 +17,7 @@ end
 
 
 function logOut()
-fs.delete("user/.cu")
+fs.delete("/tmp/.cu")
 end
 
 
