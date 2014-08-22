@@ -1,8 +1,10 @@
 oldPullEvent = os.pullEvent
 
-os.pullEvent = os.pullEventRaw
+local os.pullEvent = os.pullEventRaw
 
-build = 67.7
+--local function init()
+
+build = 68
 
 local isDialog = false
 
@@ -16,14 +18,6 @@ local tab = {
     name = "Shell",
     exec = "system/icons/shell.exc",
     icon = "system/icons/shell.nft",
-    isNFT = true,
-  },
-  {
-    y = 2,
-    x = 4,
-    name = "fldr",
-    exec = "system/icons/folder.exc",
-    icon = "system/icons/folder.nft",
     isNFT = true,
   },
   {
@@ -286,6 +280,23 @@ end
 login:draw()
 shutdown:draw()
 
+local function checkForOld(usern, actualPass, hPassword)
+  usern = tostring(usern)
+  actualPass = tostring(actualPass)
+  hPassword = tostring(hPassword)
+  if hPassword == sha256.sHash(actualPass, usern) then
+    return true
+  elseif actualPass == hPassword then
+    return true
+  elseif hPassword == sha256.hash(actualPass) then
+    return true
+  end
+  return false
+end
+
+--select "username" input
+os.queueEvent("mouse_click",1,2,4)
+
 local username,password = "",""
 while true do
 	local e,_,x,y = os.pullEvent("mouse_click")
@@ -304,10 +315,16 @@ while true do
 			term.setBackgroundColor(colors.lightGray)
 			term.setCursorPos(2,7)
 			password = maxRead(w-2,"*",password)
+			
+			--click the login button
+			os.queueEvent("mouse_click",1,login.x,login.y)
 		end
 	end
 	if (login:isClicked(x,y)) then
-		if users.isUser(username) and users.getPassword(username) == sha256.sHash(password, username) then
+		if users.isUser(username) == true and users.getPassword(username) == sha256.sHash(password, password) then
+      if checkForOld(username) == true then
+        users.changePass(username, sha256.sHash(password, password))
+      end
 			users.login(username)
 			break
 			
@@ -331,7 +348,7 @@ local latest = http.get("https://raw.githubusercontent.com/FlareHAX0R/deltaOS-un
 if tonumber(latest.readAll()) > build then
 	graphics.reset(colors.white, colors.black)
 	print(" ")
-	newVer = latest.readAll()
+	newVer = tostring(latest.readAll())
 	graphics.cPrint( "Updating DeltaOS to build "..newVer.."!" )
 	shell.run("/system/update")
 end
@@ -528,8 +545,7 @@ while true do
 			--animations.wake()
 			--draw()
 		else
-			
-			draw()
+      draw()
 		end
 	else
   local found = false
@@ -595,7 +611,12 @@ local function sleepServ()
  while true do
  	local event, key = os.pullEvent("key")
  	if key == 59 then
- 		animations.sleep()
+    if settings.getSetting("desktop", 4) == true then
+ 		 animations.sleep()
+    else
+     graphics.reset(colors.black, colors.white)
+    end
+
  		local event = os.pullEvent()
  		if event == "key" or event == "mouse_click" or event == "monitor_touch" then
  			os.sleep(0.1)
@@ -617,9 +638,97 @@ local function firewall()
  shell.run("/system/digitalarmor/firewall")
 end
 
+local function PaP()
+  while true do
+    local event, side = os.pullEvent("peripheral")
+    if side ~= nil then
+      local win = dwin.cWindow(27, 10)
+      local per = peripheral.getType(side)
+      if per == "modem" and peripheral.call(side, "isWireless") == true then
+        per = "Wireless Modem"
+      elseif per == "modem" and peripheral.call(side, "isWireless") ~= true then
+        per = "Wired Modem"
+      end
+      if per == "monitor" and peripheral.call(side, "isColor") == true then
+        per = "Adv. Monitor"
+      elseif per == "monitor" and peripheral.call(side, "isColor") ~= true then
+        per = "Monitor"
+      end
+      if per == "chatbox" then
+        per = "Chatbox"
+      end
+      if per == "drive" then
+        per = "Disk Drive"
+      end
+      if per == "speaker" then
+        per = "Speaker"
+      end
+      if per == "adventure map interface" then
+        per = "AMI"
+      end
+      if per == "cryptographic accelerator" then
+        per = "Cryptographic Accelerator"
+      end
+      if per == "LAN NIC" then
+        per = "LAN Port"
+      end
+      if per == "mag card reader" then
+        per = "Mag Card I/O"
+      end
+      if per == "nil" or per == nil then
+        per = "Unknown"
+      end
+      if per == "printer" then
+        per = "Printer"
+      end
+      if per == "iron_note" then
+        per = "Iron Noteblock"
+      end
+      if per == "player_detector" then
+        per == "Player Detector"
+      end
+      if per == "rfid reader" then
+        per = "RFID Reader"
+      end
+      if per == "rfid writer" then
+        per = "RFID Writer"
+      end
+      if per == "computer" then
+        per = "Computer"
+      end
+      if per == "turtle" then
+        per = "Turtle"
+      end
+
+      graphics.red_reset(win, colors.white, colors.black)
+      graphics.red_drawLine(win, 1, colors.lightGray)
+      graphics.red_cPrint(win, "Plug & Play", 1)
+      win.setBackgroundColor(colors.white)
+      win.setTextColor(colors.black)
+      win.setCursorPos(1, 2)
+      win.write("A device has been attached")
+      graphics.red_cPrint(win, "The device type is:", 3)
+      graphics.red_cPrint(win, per, 4)
+
+      graphics.red_cPrint(win, "Click anywhere or press", 6)
+      graphics.red_cPrint(win, "ENTER to return.", 7)
+      while true do
+        local event, char = os.pullEvent()
+        if event == "key" and char == 28 then
+          draw()
+          break
+        elseif event == "mouse_click" then
+          break
+        end
+      end
 
 
-parallel.waitForAll(sleepServ, shellServ, firewall)
+
+    end
+  end
+end
+
+parallel.waitForAll(sleepServ, shellServ, firewall, PaP)
 end
 
 
@@ -630,3 +739,7 @@ end
 mainDesktop()  
 
 kernel.saveToFile(apps,"system/.appdata")
+--end
+
+
+--init()
