@@ -4,7 +4,7 @@ os.pullEvent = os.pullEventRaw
 
 --local function init()
 
-build = 68.1
+build = 68.2
 
 local isDialog = false
 
@@ -660,38 +660,11 @@ local function PaP()
       if per == "drive" then
         per = "Disk Drive"
       end
-      if per == "speaker" then
-        per = "Speaker"
-      end
-      if per == "adventure map interface" then
-        per = "AMI"
-      end
-      if per == "cryptographic accelerator" then
-        per = "Cryptographic Accelerator"
-      end
-      if per == "LAN NIC" then
-        per = "LAN Port"
-      end
-      if per == "mag card reader" then
-        per = "Mag Card I/O"
-      end
       if per == "nil" or per == nil then
         per = "Unknown"
       end
       if per == "printer" then
         per = "Printer"
-      end
-      if per == "iron_note" then
-        per = "Iron Noteblock"
-      end
-      if per == "player_detector" then
-        per == "Player Detector"
-      end
-      if per == "rfid reader" then
-        per = "RFID Reader"
-      end
-      if per == "rfid writer" then
-        per = "RFID Writer"
       end
       if per == "computer" then
         per = "Computer"
