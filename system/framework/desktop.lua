@@ -672,6 +672,9 @@ local function PaP()
       if per == "turtle" then
         per = "Turtle"
       end
+      if per == "command" then
+      	per = "Command Block"
+      end
 
       graphics.red_reset(win, colors.white, colors.black)
       graphics.red_drawLine(win, 1, colors.lightGray)
