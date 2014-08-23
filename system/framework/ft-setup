@@ -116,6 +116,8 @@ graphics.cPrint("AssossaGPG - Help coding")
 graphics.cPrint("Omnislashe/Nickireda - CCUG")
 graphics.cPrint("Oeed - Ink and Sketch programs")
 graphics.cPrint("InputUsername - NFT api and login screen")
+graphics.cPrint("GravityScore and 1lann - LuaIDE")
+graphics.cPrint("GravityScore - SHA256 API")
 sleep(4)
 
 graphics.reset(colors.lightGray, colors.black)
