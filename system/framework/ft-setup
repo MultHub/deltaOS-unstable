@@ -45,13 +45,15 @@ local user = read()
 
 term.setCursorPos(2, kernel.y/2+4)
 
-local pass = sha256.sHash( read("*"), user )
+local pass = read("*")
+pass = sha256.sHash( pass, pass )
 
 term.setCursorPos(2, kernel.y/2+8)
 
 
 
-local pass2 = sha256.sHash( read("*"), user )
+local pass2 = read("*")
+pass2 = sha256.sHash( pass2, pass2 )
 if pass ~= pass2 then
   term.setCursorPos(2, kernel.y/2-3)
   term.setTextColor(colors.red)
