@@ -1,3 +1,7 @@
+--WARNING:3 BUGS FOUND
+--SEE github.com/FlareHAX0R/DeltaOS-unstable 's ISSUES SECTION
+--MADE BY KONLAB
+
 function getUserName()
 if not fs.exists("/tmp/.cu") then return false end
 local file = fs.open("/tmp/.cu","r")
