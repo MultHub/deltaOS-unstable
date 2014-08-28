@@ -11,7 +11,9 @@ Installer - pastebin run 9FiUs9pZ
 {} = Optional
 
 GRAPHICS API
-== 
+==
+
+**Note: This API is also used throughout DeltaOS.**
  
 graphics.reset({bgColor}, {textColor})
 Pretty simple. Resets the screen, with the background color/text if specified.
@@ -24,7 +26,10 @@ graphics.drawImage([x], [y], [imagePath])
 I don't need to explain this.
 
 SHA256 API
-== 
+==
+
+**Note: This API is also used throughout DeltaOS.**
+
 sha256.hash([text])
 Hashes string TEXT with SHA256. Returns the hashed string.
  
@@ -32,7 +37,10 @@ sha256.sHash([text], [salt])
 Hashes string TEXT with SHA256 and the hash SALT
 
 USERS API
-== 
+==
+
+**Note: This API is also used throughout DeltaOS.**
+
 users.getUserName()
 Gets the logged in user.
  
