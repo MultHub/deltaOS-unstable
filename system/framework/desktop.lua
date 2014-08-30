@@ -591,9 +591,10 @@ while true do
        end
        graphics.reset(colors.black,colors.white)
        os.pullEvent = oldPullEvent
-       
+       bottomBar.redraw()
        if settings.getSetting("desktop", 5) == true then
         local tID = shell.openTab(apps[k]["exec"])
+        bottomBar.redraw()
         shell.switchTab(tID)
        else
         shell.run(apps[k]["exec"])
