@@ -10,9 +10,7 @@
 --2: Put this on the bottom of your program:
 --if not DeltaOS then main()
 --else parallel.waitForAll(main, function() os.run("/system/keyhandler") end) end
---Key handling will be supported by default on all DeltaOS programs made by
---HAX0R or another person in the DeltaOS dev group, and in desktop.lua (but I'll actually
---put it in desktop.lua's code instead of..)
+
 while true do
   _,key=os.pullEvent("key")
   if key == keys.ctrl then
