@@ -133,7 +133,7 @@ end
 function isRoot(user)
  if fs.exists("/users/set/"..user.."/.root") then
   local ir = fs.open("/users/set/"..user.."/.root", "r")
-  if ir.readAll() == getPassword(user) then
+  if ir.readAll() == getPassword(user) or ir.readAll() == sha256.sHash(getPassword(user), getPassword(user)) then
    ir.close()
    return true
   end
