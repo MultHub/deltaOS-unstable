@@ -455,7 +455,7 @@ end
 
 
 bottomBar.setTextColor(colors.black)
-bottomBar.setBackgroundColor( settings.getSetting("desktop", 3,) )
+bottomBar.setBackgroundColor( settings.getSetting("desktop", 3) )
 bottomBar.clear()
 bottomBar.setCursorPos(1, 1)
 bottomBar.write("D")
