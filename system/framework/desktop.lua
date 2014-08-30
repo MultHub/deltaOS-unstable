@@ -2,6 +2,8 @@ oldPullEvent = os.pullEvent
 
 os.pullEvent = os.pullEventRaw
 
+local bottomBar = window.create( term.current(), 1, kernel.y, kernel.x, 1 )
+
 --local function init()
 
 build = 68.4
@@ -439,24 +441,25 @@ if settings.getSetting("desktop", 1) == "color" then
 	graphics.reset( settings.getSetting("desktop", 2 ), colors.black )
 elseif settings.getSetting("desktop", 1) == "image" then
 	local imgPath = tostring( settings.getSetting("desktop", 2) )
-	graphics.drawImage(imgPath, 1, 2)
+	graphics.drawImage(imgPath, 1, 1)
 end
-graphics.drawLine( kernel.y, settings.getSetting("desktop", 3) )
+
+
+
+bottomBar.setTextColor(colors.black)
+bottomBar.setBackgroundColor( settings.getSetting("desktop", 3,) )
+bottomBar.clear()
+bottomBar.setCursorPos(1, 1)
+bottomBar.write("D")
 	
 
-term.current().setCursorPos(kernel.x-(kernel.x-1), 1)
+
 if ua==nil then ua=true end
 drawBar()
 if ua then getIcons() end
 if grid then drawGrid() end
 drawApps()
 
-if isUnstable then
- term.current().setBackgroundColor( settings.getSetting("desktop", 3) )
- term.current().setCursorPos(kernel.x-string.len(fullBuildName)+1, kernel.y)
- write(fullBuildName)
- term.current().setCursorPos(1, 1)
-end
 
 term.setCursorPos(kernel.x-cUser:len()+1, 1)
 write(cUser)
@@ -526,7 +529,7 @@ local function shellServ()
 while true do
  local e,b,x,y = os.pullEvent()
  if e=="mouse_click" or e=="mouse_drag" or e=="monitor_touch" then
-	if x==kernel.x-(kernel.x-1) and y==kernel.y-(kernel.y-1) and b==2 and event ~= "monitor_touch" then
+	if x==kernel.x-(kernel.x-1) and y==kernel.y and b==2 and event ~= "monitor_touch" then
 		local d = Dialog.new(nil, nil, nil, nil, "DeltaOS", {"Do you want to", "shutdown?"}, true,true)
 		if d:autoCaptureEvents() == "ok" then
 			draw()
