@@ -1,6 +1,3 @@
---WARNING:3 BUGS FOUND
---SEE github.com/FlareHAX0R/DeltaOS-unstable 's ISSUES SECTION
---MADE BY KONLAB
 
 function getUserName()
 if not fs.exists("/tmp/.cu") then return false end
@@ -71,7 +68,7 @@ end
 
 function deleteUser(name)
 if not fs.exists("users/set/"..name) then
-return false
+ return false
 end
 fs.delete("users/set/"..name)
 fs.delete("users/files/"..name)
@@ -137,9 +134,11 @@ function isRoot(user)
  if fs.exists("/users/set/"..user.."/.root") then
   local ir = fs.open("/users/set/"..user.."/.root", "r")
   if ir.readAll() == getPassword(user) then
+   ir.close()
    return true
   end
  end
+ ir.close()
  return false
 end
  
