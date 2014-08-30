@@ -4,6 +4,14 @@ os.pullEvent = os.pullEventRaw
 
 local bottomBar = window.create( term.current(), 1, kernel.y, kernel.x, 1 )
 
+local rednetPos = kernel.x-4
+
+local function drawPixelBB(xx, yy, col)
+	bottomBar.setCursorPos(xx, yy)
+	bottomBar.setBackgroundColor(col)
+	bottomBar.write(" ")
+end
+
 --local function init()
 
 build = 68.4
@@ -451,6 +459,20 @@ bottomBar.setBackgroundColor( settings.getSetting("desktop", 3,) )
 bottomBar.clear()
 bottomBar.setCursorPos(1, 1)
 bottomBar.write("D")
+
+local rdnt = false
+
+for k,v in pairs( rs.getSides() ) do
+	if peripheral.getType(v) == "modem" then
+		rdnt = true
+	end
+end
+
+if rdnt == true then
+ drawPixelBB(kernel.x-1, kernel.y, colors.green)
+else
+ drawPixelBB(kernel.x-1, kernel.y, colors.red)
+end
 	
 
 
